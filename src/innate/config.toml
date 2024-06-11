@@ -1,0 +1,13 @@
+[metadata]
+version = '0.0.1'
+
+[technique_labels]
+
+# Interpolation
+
+
+# Regression
+equat = 'equation'
+nn = 'neural networks'
+
+
