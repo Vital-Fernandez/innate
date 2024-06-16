@@ -1,0 +1,5 @@
+0.0.1 Initial release
+0.1.0 Basic library workflow:
+        - Save data sets and aproximation specification in h5netcdf file
+        - Load file as DataSet with multiple grids
+        - .interp.rgi implementation

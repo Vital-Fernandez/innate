@@ -31,6 +31,5 @@ setup(
     package_dir={'': 'src'},
     package_data={'': ['config.toml', 'resources/*']},
     include_package_data=True,
-    install_requires=['numpy', 'matplotlib', 'pandas', 'astropy', 'lmfit', 'scipy', 'pylatex', 'openpyxl',
-                      'joblib'],
+    install_requires=['numpy', 'matplotlib', 'pandas', 'astropy', 'scipy', 'joblib'],
     )

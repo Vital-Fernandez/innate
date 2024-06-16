@@ -43,6 +43,28 @@ def interpolation_selection(grid_dict, x_range, y_range, z_range=None, interp_ty
     return interp_dict
 
 
+def interpolation_coordinates(data_grid, axes_range_list, z_range=None, interp_type='point'):
+
+    # 2D Point interpolation
+    if interp_type == 'point':
+        interp_i = RegularGridInterpolator(axes_range_list, data_grid[:, :, None], nout=1)
+
+    # Line interpolation
+    elif interp_type == 'axis':
+        data_grid_reshape = data_grid.reshape((axes_range_list[0].size, axes_range_list[1].size, -1))
+        interp_i = RegularGridInterpolator(axes_range_list, data_grid_reshape)
+
+    # 3D point
+    elif interp_type == 'cube':
+        interp_i = RegularGridInterpolator(axes_range_list, data_grid)
+
+    else:
+        raise InnateError(f'The interpolation type ({interp_type}) is not recognized,'
+                          f' please use "point", "axis" or "cube"')
+
+    return interp_i.evaluate
+
+
 def regular_grid_interp(points, values, coords, *, fill_value=None):
     """Perform a linear interpolation in N-dimensions w a regular grid
 
