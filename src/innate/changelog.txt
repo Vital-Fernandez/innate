@@ -3,3 +3,7 @@
         - Save data sets and aproximation specification in h5netcdf file
         - Load file as DataSet with multiple grids
         - .interp.rgi implementation
+
+0.1.1 Side projects:
+        - NN training example
+        - documenation base

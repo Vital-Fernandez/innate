@@ -2,6 +2,8 @@ import itertools
 import logging
 from ..io import InnateError
 
+_logger = logging.getLogger('Innate')
+
 
 try:
     import pytensor.tensor as tt
@@ -141,6 +143,7 @@ class RegularGridInterpolator:
             self.fill_value = fill_value
 
         else:
+            _logger.critical(f'PyTensor is not installed, this interpolation cannot be applied.')
             raise InnateError(f'Need to install PyTensor to use this function')
 
     def evaluate(self, t):

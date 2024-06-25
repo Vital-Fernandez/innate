@@ -1,6 +1,4 @@
 import innate
-import lime
-from innate.io import h5netcdf_file_load
 import pyneb as pn
 
 data_file = '../data/emissivity_grids.nc'

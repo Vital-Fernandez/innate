@@ -6,7 +6,6 @@ from .approximation import Approximator
 
 _logger = logging.getLogger('Innate')
 
-
 def reconstruct_axes_range(data_label, axes, data_cfg, data_shape):
 
     axes_range = {}
