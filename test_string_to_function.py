@@ -32,8 +32,13 @@ print(coef_values)
 create_coef_dict(coef_names,coef_values )
 # Answer should be {'a': 1, 'b': 2, 'c': 3}
 
+expression = 'a + b / (variable1_range/10000.0) + c * np.log10(variable2_range/10000)'
 
 # Extract variables ending with '_range' (default suffix)
 range_variables = extract_variables_names(expression)
 print(range_variables) 
 #['variable1_range', 'variable2_range']
+
+
+create_coef_dict (coef_names, coef_values)
+#{'a': 1, 'b': 2, 'c': 3}
