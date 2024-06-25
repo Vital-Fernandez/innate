@@ -1,0 +1,4 @@
+# MANIFEST.in
+
+include src/innate/config.toml
+include src/innate/changelog.txt

@@ -1,4 +1,4 @@
-
+import numpy as np
 
 
 expression = 'a + b / (variable1_range/10000.0) + c * np.log10(variable2_range/10000)'
