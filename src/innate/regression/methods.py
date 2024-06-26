@@ -57,7 +57,7 @@ def parse_string_equation(data_label, str_eqn, coeffs_eqn, variable_names):
             message += f'\nParametrisation coefficients ("eqn_coeffs" key in dataset configuration).'
         _logger.warning(message)
 
-        eqn, coeffs = None, None
+        eqn, coeffs_dict = None, None
 
     return eqn, coeffs_dict
 

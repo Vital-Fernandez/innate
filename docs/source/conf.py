@@ -12,7 +12,7 @@ author = 'Vital-Fernandez'
 release = '06/25/2024'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.2'
+release = '0.1.3'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

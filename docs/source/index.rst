@@ -17,3 +17,11 @@ to provide an uniform and fast workflow for tensor operations while maintaining 
 
    introduction/installation
    introduction/api
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Tutorials
+   :name: tutorial-tree
+
+   tutorials/n_tutorial1_single_line_fit.ipynb
+   tutorials/n_tutorial2_lines_inspection.ipynb
