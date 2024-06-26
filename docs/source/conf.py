@@ -12,7 +12,7 @@ author = 'Vital-Fernandez'
 release = '06/25/2024'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.4'
+release = '0.1.5'
 
 # -- Moving documentation building data functions ----------------------------
 
