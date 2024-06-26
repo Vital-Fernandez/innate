@@ -12,6 +12,7 @@ Development
 ===========
 
 INNATE is currently on an alpha release. Any comment/issue/request can be added as an issue on the github page.
+Please commit to dev branch.
 
 .. _PyPi: https://pypi.org/project/innate-stable/
 .. _github: https://github.com/Vital-Fernandez/innate
