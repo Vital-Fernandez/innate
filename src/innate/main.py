@@ -48,7 +48,7 @@ class Grid:
 
         # Declare the function attributes treatments
         approx_techniques = data_cfg.get('approximation')
-        self.approx = Approximator(self, approx_techniques)
+        self.approx = Approximator(self, approx_techniques, data_cfg)
 
         # # Initiate data and interpolators
         # grid_path = Path(grid)
@@ -111,4 +111,22 @@ class DataSet(dict):
             self[data_label] = Grid(data_label, grid_array, grid_cfg, **kwargs)
 
         return
+
+    def extract_approximation(self, technique, label_list=None):
+
+        label_list = label_list if label_list is not None else list(self.keys())
+
+        approx_dict = {}
+        for label in label_list:
+
+            if technique in self[label].approx.interp.techniques:
+                approx_dict[label] = getattr(self[label].approx.interp, technique)
+
+            elif technique in self[label].approx.reg.techniques:
+                approx_dict[label] = getattr(self[label].approx.reg, technique)
+
+            else:
+                _logger.critical(f'Input approximation "{technique}" is not available for dataset "{label}"')
+
+        return approx_dict
 

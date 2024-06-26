@@ -8,11 +8,11 @@ _logger = logging.getLogger('Innate')
 
 class Interpolator:
 
-    def __init__(self, grid, technique_list, tensor_library='pytensor'):
+    def __init__(self, grid, technique_list, tensor_library='pytensor', data_cfg=None):
 
         # Attributes
         self.rgi = None
-        self.eqn = None
+        self.techniques = []
 
         # Confirm the data is available
         if grid.data is None:
@@ -23,6 +23,7 @@ class Interpolator:
 
         # Regular grid Interpolation
         if 'rgi' in algorithms:
+            self.techniques.append('rgi')
             self.rgi = interpolation_coordinates(grid.data, list(grid.axes_range.values()), interp_type='point')
 
         return
