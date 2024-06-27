@@ -1,3 +1,5 @@
+|pytest CI| |pre-commit| |Documentation Status| |License|
+
 This library provides a set of tools to approximate data grids, either via interpolation or regression. This project aims
 to provide an uniform and fast workflow for tensor operations while maintaining the accuracy and precision on the approximation.
 
@@ -21,3 +23,16 @@ Please commit to dev branch.
     :width: 30%
     :align: center
     :alt: INNATE library logo.
+
+.. |License| image:: https://img.shields.io/badge/License-MIT%202.0-blue.svg
+   :alt: License
+
+.. |Documentation Status| image:: https://readthedocs.org/projects/innate/badge/?version=latest
+   :target: https://innate.readthedocs.io/?badge=latest
+
+.. |pytest CI| image:: https://github.com/Vital-Fernandez/innate/actions/workflows/pytest.yml/badge.svg?event=push
+   :target: https://github.com/Vital-Fernandez/innate/actions/workflows/pytest.yml
+
+.. |pre-commit| image:: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
+   :target: https://github.com/pre-commit/pre-commit
+
