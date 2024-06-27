@@ -73,6 +73,36 @@ class DataSet(dict):
 
     def __init__(self, array_dict, common_cfg, local_cfg, **kwargs):
 
+        """
+        A class used to represent a Dataset, inheriting from Python's built-in dictionary.
+
+        This class is initialized with data arrays and configuration parameters,
+        and it unpacks these into the class dictionary.
+
+        Parameters
+        ----------
+        array_dict : dict
+            Dictionary containing data arrays.
+        common_cfg : dict
+            Dictionary containing common configuration parameters.
+        local_cfg : dict
+            Dictionary containing local configuration parameters.
+        **kwargs
+            Additional keyword arguments to be passed to the method.
+
+        Attributes
+        ----------
+        data_labels : None or list
+            Placeholder for data labels. Initialized as None.
+        shape_array : None or tuple
+            Placeholder for the shape of the data arrays. Initialized as None.
+
+        Methods
+        -------
+        _compile_grids(array_dict, common_cfg, local_cfg, **kwargs)
+            Unpacks the individual grids into the class dictionary.
+        """
+
         # Attributes
         self.data_labels = None
         self.shape_array = None
@@ -84,6 +114,33 @@ class DataSet(dict):
 
     @classmethod
     def from_file(cls, fname, grid_cfg=None):
+
+        """
+        Creates a DataSet dictionarly-like object from an input file address.
+
+        Parameters
+        ----------
+        fname : str
+            The file address or path of the file containing the dataset.
+        grid_cfg : dict, optional
+            Configuration parameters for the dataset provided by the user. These values will overwrite common entries on
+             the fiel configuration parameter. Default is None.
+
+        Returns
+        -------
+        DataSet
+            A DataSet dictionarly-like object containing the scientific arrays, the data configuration and the
+            approximation techniques.
+
+        Notes
+        -----
+        This method loads and parses the input data from the specified file.
+        It updates the input configuration with the parameters provided by the user.
+
+        Examples
+        --------
+        >>> scientific_data = DataSet.from_file('data/file.txt', grid_cfg={'param': 'value'})
+        """
 
         # Load and parse the input data
         array_dict, common_cfg, local_cfg = load_dataset(fname)
