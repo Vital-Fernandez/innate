@@ -6,6 +6,11 @@
 INNATE (Interpolation and Neural Network Architecture for TENsors)
 ==================================================================
 
+.. image:: ./_static/Logo1.png
+    :scale: 30%
+    :align: center
+
+
 This library provides a set of tools to approximate data grids, either via interpolation or regression. This project aims
 to provide an uniform and fast workflow for tensor operations while maintaining the accuracy and precision on the approximation.
 
