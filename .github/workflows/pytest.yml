@@ -1,0 +1,41 @@
+---
+name: pytest
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  test:
+    name: PYTESTS (${{ matrix.python-version }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: true
+      matrix:
+        os: ["ubuntu-22.04"]
+        python-version: ["3.10"]
+
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Basic install
+      run: pip install -r requirements.txt
+
+    - name: Run Tests
+      run: pytest --cov 
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+          flags: python-${{ matrix.python-version }}
+          token: ${{ secrets.CODECOV_TOKEN }}
+

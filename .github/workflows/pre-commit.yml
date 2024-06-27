@@ -1,0 +1,21 @@
+name: "Lint"
+
+on:
+  push:
+  pull_request:
+
+env:
+  FORCE_COLOR: 1
+
+jobs:
+  pre-commit:
+    env:
+      SKIP: 'no-commit-to-branch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
