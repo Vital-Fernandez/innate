@@ -16,3 +16,8 @@ Please commit to dev branch.
 
 .. _PyPi: https://pypi.org/project/innate-stable/
 .. _github: https://github.com/Vital-Fernandez/innate
+
+.. image:: https://github.com/Vital-Fernandez/innate/blob/master/docs/source/_static/Logo1.png?raw=true
+    :width: 30%
+    :align: center
+    :alt: INNATE library logo.
