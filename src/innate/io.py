@@ -25,6 +25,39 @@ class InnateError(Exception):
 
 
 def load_dataset(fname: str):
+    """
+        Load the data grids and configuration from a digital file.
+
+        Parameters
+        ----------
+        fname : str
+            The file address or path of the file.
+
+        Returns
+        -------
+
+        A dictionary with the data arrays, a dictionary with the global grids configuration and a dictionary with the local grid configuration.
+            - For '.fits' files: (array_dict, common_cfg, local_cfg)
+            - For '.nc' files: (array_dict, common_cfg, local_cfg)
+
+        Raises
+        ------
+        InnateError
+            If no dataset file is found at the specified location.
+        KeyError
+            If the file extension is not recognized.
+
+        Notes
+        -----
+        This function checks the file extension and loads the dataset using the appropriate method:
+        - '.fits' files are loaded using `fits_file_load`.
+        - '.nc' files are loaded using `h5netcdf_file_load`.
+
+        Examples
+        --------
+        >>> data = load_dataset('data/file.fits')
+        >>> data = load_dataset('data/file.nc')
+        """
 
     # Check the file location
     fname = Path(fname)
@@ -49,14 +82,38 @@ def load_dataset(fname: str):
 def save_dataset(fname: str, grid_dict: dict, common_cfg: dict, custom_cfg: dict):
 
     """
+    Save the data grids and configuration to a digital file.
 
-    :param fname:
-    :type str or Pathlib: path.Pathlib
+    Parameters
+    ----------
+    fname : str or pathlib.Path
+        The name of the file where the dataset will be saved.
+    grid_dict : dict
+        Dictionary containing the data grid to be saved.
+    common_cfg : dict
+        Dictionary containing common configuration parameters.
+    custom_cfg : dict
+        Dictionary containing custom configuration parameters.
 
-    :param cfg_dict:
+    Returns
+    -------
+    None
 
-    :param grid_dict:
+    Raises
+    ------
+    KeyError
+        If the file extension is not recognized.
 
+    Notes
+    -----
+    This function checks the file extension and saves the dataset using the appropriate method:
+    - '.fits' files are saved using `fits_file_save`.
+    - '.nc' files are saved using `h5netcdf_file_save`.
+
+    Examples
+    --------
+    >>> save_dataset('data/output.fits', grid_dict, common_cfg, custom_cfg)
+    >>> save_dataset('data/output.nc', grid_dict, common_cfg, custom_cfg)
     """
 
     # Check the file location
@@ -65,7 +122,7 @@ def save_dataset(fname: str, grid_dict: dict, common_cfg: dict, custom_cfg: dict
 
     # Check there is input data
     if len(grid_dict) == 0:
-        raise InnateError(f'Output data grid does not contain any entry')
+        _logger.warning(f'Output dataset does not contain any grid entry')
 
     # Run the appropriate file saving workflow
     match ext:
