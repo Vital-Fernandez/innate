@@ -17,3 +17,10 @@ to provide an uniform and fast workflow for tensor operations while maintaining 
 
    introduction/installation
    introduction/api
+
+.. toctree::
+   :maxdepth: 1   
+   :caption: Tutorials
+   :name: tutorial-tree
+
+   tutorials/1_load_dataset.ipynb
