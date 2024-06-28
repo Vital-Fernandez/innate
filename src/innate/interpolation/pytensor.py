@@ -68,26 +68,27 @@ def interpolation_coordinates(data_grid, axes_range_list, z_range=None, interp_t
 
 
 def regular_grid_interp(points, values, coords, *, fill_value=None):
-    """Perform a linear interpolation in N-dimensions w a regular grid
+
+    """
+    Linear interpolation on a regular grid in arbitrary dimensions.
 
     The data must be defined on a filled regular grid, but the spacing may be
     uneven in any of the dimensions.
 
-    This implementation is based on the implementation in the
-    ``scipy.interpolate.RegularGridInterpolator`` class which, in turn, is
-    based on the implementation from Johannes Buchner's ``regulargrid``
-    package https://github.com/JohannesBuchner/regulargrid.
+    Parameters
+    ----------
+    points : list of array-like
+        A list of vectors with shapes ``(m1,), ... (mn,)``. These define the grid points in each dimension.
+    values : array-like
+        A tensor defining the values at each point in the grid defined by ``points``. This must have the shape ``(m1, ... mn, ..., nout)``.
 
+    Returns
+    -------
+    result : array-like
+        Interpolated values at the requested points.
 
-    Args:
-        points: A list of vectors with shapes ``(m1,), ... (mn,)``. These
-            define the grid points in each dimension.
-        values: A tensor defining the values at each point in the grid
-            defined by ``points``. This must have the shape
-            ``(m1, ... mn, ..., nout)``.
-        coords: A matrix defining the coordinates where the interpolation
-            should be evaluated. This must have the shape ``(ntest, ndim)``.
     """
+
     points = [as_tensor_variable(p) for p in points]
     ndim = len(points)
     values = as_tensor_variable(values)
@@ -120,17 +121,25 @@ def regular_grid_interp(points, values, coords, *, fill_value=None):
 
 class RegularGridInterpolator:
 
-    """Linear interpolation on a regular grid in arbitrary dimensions
+    """
+
+    Linear interpolation on a regular grid in arbitrary dimensions.
 
     The data must be defined on a filled regular grid, but the spacing may be
     uneven in any of the dimensions.
 
-    Args:
-        points: A list of vectors with shapes ``(m1,), ... (mn,)``. These
-            define the grid points in each dimension.
-        values: A tensor defining the values at each point in the grid
-            defined by ``points``. This must have the shape
-            ``(m1, ... mn, ..., nout)``.
+    Parameters
+    ----------
+    points : list of array-like
+        A list of vectors with shapes ``(m1,), ... (mn,)``. These define the grid points in each dimension.
+    values : array-like
+        A tensor defining the values at each point in the grid defined by ``points``. This must have the shape ``(m1, ... mn, ..., nout)``.
+
+    Returns
+    -------
+    result : array-like
+        Interpolated values at the requested points.
+
     """
 
     def __init__(self, points, values, fill_value=None, **kwargs):

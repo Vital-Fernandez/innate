@@ -44,6 +44,47 @@ def extract_variables_names(expression, suffix='_range'):
 
 def parse_string_equation(data_label, str_eqn, coeffs_eqn, variable_names):
 
+    """
+
+    Parse a string equation and its coefficients (as float array) to generate its programatic object using numpy.
+
+    If the equation or coefficients are not provided, it logs a warning message.
+
+    Parameters
+    ----------
+    data_label : str
+        The label for the data set.
+    str_eqn : str or None
+        The string representation of the equation. Can be None.
+    coeffs_eqn : dict or None
+        A dictionary containing the coefficients for the equation. Can be None.
+    variable_names : list of str
+        A list of variable names used in the equation.
+
+    Returns
+    -------
+    eqn : function or None
+        The generated specific function based on the equation and coefficients. Returns None if
+        the equation or coefficients are missing.
+    coeffs_dict : dict or None
+        A dictionary of coefficients extracted from `coeffs_eqn`. Returns None if the equation or
+        coefficients are missing.
+
+    Notes
+    -----
+    If the `str_eqn` or `coeffs_eqn` is None, a warning message is logged specifying which part is
+    missing from the data set configuration.
+
+    Examples
+    --------
+    >>> eqn, coeffs_dict = parse_string_equation("example_data", "a*x + b", {"a": 1, "b": 2}, ["x"])
+    >>> print(eqn)
+    <function ...>
+    >>> print(coeffs_dict)
+    {'a': 1, 'b': 2}
+
+    """
+
     if (str_eqn is not None) or (coeffs_eqn is not None):
         coef_names = extract_coef_names(str_eqn)
         coeffs_dict = create_coef_dict(coef_names, coeffs_eqn)
