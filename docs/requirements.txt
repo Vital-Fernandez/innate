@@ -1,6 +1,6 @@
 numpy~=1.2
 h5py~=3.11
-matplotlib~=3.9
+matplotlib~=3.7
 bokeh==2.4.3
 astropy~=6.0
 h5netcdf~=1.3
