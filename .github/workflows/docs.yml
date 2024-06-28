@@ -1,0 +1,26 @@
+name: "Pull Request Docs Check"
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Pandoc
+      uses: r-lib/actions/setup-pandoc@9598b8eeb6d88de7d76d580d84443542bbfdffce
+      with:
+        pandoc-version: 2.11.1.1  
+    - name: Directly build sphinx
+      run: |
+          pip install -r ./docs/requirements.txt
+          sphinx-build -D todo_include_todos=0 -c ./docs/source/ ./docs/source ./docs/_build/html/
+
+    - name: Upload docs to GitHub pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/build/html/
+
