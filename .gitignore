@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.pytest_cache
+
+# Editor directories and files
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# MacOS generated files
+.DS_Store
+
+# Temporary files
+tmp/
+temp/
