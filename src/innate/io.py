@@ -60,11 +60,15 @@ def load_dataset(fname: str):
         """
 
     # Check the file location
-    fname = Path(fname)
-    ext = fname.suffix
+    if type(fname).__name__ != 'UploadedFile':
+        log_path = Path(fname)
+        if not log_path.is_file():
+            raise InnateError(f'Not dataset file found at {fname}')
 
-    if not fname.is_file():
-        raise InnateError(f'Not dataset file found at {fname}')
+        fname, ext = log_path, log_path.suffix
+
+    else:
+        fname, ext = fname, 'UploadedFile'
 
     # Run the appropriate file saving workflow
     match ext:
@@ -73,6 +77,9 @@ def load_dataset(fname: str):
             return fits_file_load(fname)
 
         case '.nc':
+            return h5netcdf_file_load(fname)
+
+        case 'UploadedFile':
             return h5netcdf_file_load(fname)
 
         case _:
