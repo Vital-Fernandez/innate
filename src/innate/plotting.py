@@ -268,7 +268,7 @@ class Plotter:
             in_ax.imshow(grid, aspect=0.05, extent=(x_range.min(), x_range.max(), y_range.min(), y_range.max()))
 
             # Plot discrepancy below
-            idx_interest = percentage_difference < 0.05
+            idx_interest = percentage_difference < 5
             in_ax.scatter(X[idx_interest], Y[idx_interest], c="None", edgecolors='black', linewidths=0.35, label='Error below 1%')
 
             if np.sum(idx_interest == False) > 0:
