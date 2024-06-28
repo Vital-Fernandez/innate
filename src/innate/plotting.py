@@ -191,6 +191,44 @@ class Plotter:
     def matrix_diagnostic(self, output_address=None, num_points=15, technique='rgi', in_fig=None, fig_cfg={}, ax_cfg={},
                           maximize=False):
 
+        """
+        This function plots the 2D grid array as a surface plot where at even intervals the scatter points color represent
+        the absolute divergence between the array data and the selected approximation.
+
+        Parameters
+        ----------
+        output_address : str, optional
+            The file path to save the output figure. If None, the figure will be displayed on the screen.
+        num_points : int, optional
+            The number of points per axis to test the discrepancy between the grid data and the approximation. Default is 15.
+        technique : str, optional
+            The interpolation technique to use. Default is 'rgi'.
+        in_fig : matplotlib.figure.Figure, optional
+            An existing figure to plot on. If None, a new figure will be created.
+        fig_cfg : dict, optional
+            Configuration dictionary for the figure settings. Default is an empty dictionary.
+        ax_cfg : dict, optional
+            Configuration dictionary for the axes settings. Default is an empty dictionary.
+        maximize : bool, optional
+            Whether to maximize the figure window. Default is False.
+
+        Returns
+        -------
+        in_fig : matplotlib.figure.Figure
+            The figure object containing the diagnostic plot.
+
+        Notes
+        -----
+        This function prepares the data by extracting the grid, parameters, and axes ranges. It computes the test points
+        and the discrepancies between the interpolated and actual data values. The results are plotted on a figure,
+        highlighting areas with discrepancies below and above 1%.
+
+        Examples
+        --------
+        >>> fig = obj.matrix_diagnostic(output_address='output.png', num_points=20, technique='rgi')
+        >>> plt.show(fig)
+        """
+
         # Prepare the data
         grid = self._grid.data
         params = self._grid.axes

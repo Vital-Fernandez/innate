@@ -20,6 +20,27 @@ Inputs/outputs
 Core objects
 ------------
 
+.. autoclass:: innate.Grid
+
 .. autoclass:: innate.DataSet
 
 .. autofunction:: innate.DataSet.from_file
+
+
+Interpolation techniques
+------------------------
+
+.. autofunction:: innate.interpolation.pytensor.regular_grid_interp
+
+Regression techniques
+---------------------
+
+.. autofunction:: innate.regression.methods.parse_string_equation
+
+Plots
+-----
+
+.. autofunction:: innate.plotting.Plotter.matrix_diagnostic
+
+.. image:: ../_static/matrix_plot_example.png
+    :align: center

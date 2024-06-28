@@ -30,6 +30,49 @@ def reconstruct_axes_range(data_label, axes, data_cfg, data_shape):
 
 class Grid:
 
+    """
+
+    A class used to represent an innate Grid, which consits in a (numpy) data array and a set of configuration entries.
+
+    In the case of interpolation techniques the user can specify the tensor library, which is used to compile the approximations.
+
+    Parameters
+    ----------
+    grid_label : str
+       The label for the grid.
+    data_array : array-like
+       The data array.
+    data_cfg : dict
+       Configuration dictionary for the data, containing the array dimensions information.
+    tensor_library : str, optional
+       The tensor library to use (default is 'pytensor').
+
+    Attributes
+    ----------
+    label : str
+       The label for the grid.
+    description : str
+       Description of the data parameter.
+    data : array-like
+       The data array.
+    axes : list
+       List of axes for the data.
+    shape : tuple
+       Shape of the data array.
+    axes_range : list
+       Range of the axes for the data.
+    approx : Approximator
+       An approximator instance for handling data approximations.
+    plot : Plotter
+       A plotter instance for visualizing the data.
+
+    Methods
+    -------
+    reconstruct_axes_range(grid_label, axes, data_cfg, shape)
+       Reconstructs the range of axes for the grid.
+
+    """
+
     def __init__(self, grid_label, data_array, data_cfg, tensor_library='pytensor'):
 
         # Class attributes
@@ -60,37 +103,35 @@ class Grid:
 
 class DataSet(dict):
 
+    """
+
+    A class used to represent a Dataset, inheriting from Python's built-in dictionary.
+
+    This class is initialized with data arrays and configuration parameters,
+    and it unpacks these into the class dictionary.
+
+    Parameters
+    ----------
+    array_dict : dict
+        Dictionary containing data arrays.
+    common_cfg : dict
+        Dictionary containing common configuration parameters.
+    local_cfg : dict
+        Dictionary containing local configuration parameters.
+
+    Attributes
+    ----------
+    data_labels : None or list
+        Placeholder for data labels. Initialized as None.
+    shape_array : None or tuple
+        Placeholder for the shape of the data arrays. Initialized as None.
+
+
+    """
+
     def __init__(self, array_dict, common_cfg, local_cfg, **kwargs):
 
-        """
-        A class used to represent a Dataset, inheriting from Python's built-in dictionary.
 
-        This class is initialized with data arrays and configuration parameters,
-        and it unpacks these into the class dictionary.
-
-        Parameters
-        ----------
-        array_dict : dict
-            Dictionary containing data arrays.
-        common_cfg : dict
-            Dictionary containing common configuration parameters.
-        local_cfg : dict
-            Dictionary containing local configuration parameters.
-        **kwargs
-            Additional keyword arguments to be passed to the method.
-
-        Attributes
-        ----------
-        data_labels : None or list
-            Placeholder for data labels. Initialized as None.
-        shape_array : None or tuple
-            Placeholder for the shape of the data arrays. Initialized as None.
-
-        Methods
-        -------
-        _compile_grids(array_dict, common_cfg, local_cfg, **kwargs)
-            Unpacks the individual grids into the class dictionary.
-        """
 
         # Attributes
         self.data_labels = None
