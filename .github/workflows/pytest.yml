@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    name: PYTESTS (${{ matrix.python-version }}, ${{ matrix.os }})
+    name: pytest (${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -38,4 +38,5 @@ jobs:
       with:
           flags: python-${{ matrix.python-version }}
           token: ${{ secrets.CODECOV_TOKEN }}
+      
 
