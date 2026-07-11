@@ -265,4 +265,38 @@ def h5netcdf_file_load(fname: str):
     return grid_dict, common_cfg, local_cfg
 
 
+def h5netcdf_file_save(fname: str, grid_dict: dict, common_cfg: dict, custom_cfg: dict,
+                        compression: str = 'gzip', compression_opts: int = 4):
+    if h5netcdf_check:
+        grid_0 = grid_dict[list(grid_dict.keys())[0]]
+        data_shape = grid_0.shape
+        if len(data_shape) != len(common_cfg['axes']):
+            raise InnateError(f'Data set shape ({data_shape}) size is different from configuration axes'
+                              f' ({common_cfg["axes"]}) size')
 
+        # Build compression kwargs conditionally
+        compress_kwargs = {'compression': compression, 'shuffle': True, 'chunks': True}
+        if compression == 'gzip':
+            compress_kwargs['compression_opts'] = compression_opts
+
+        with h5netcdf.File(fname, 'w') as f:
+            for i, axis in enumerate(common_cfg['axes']):
+                f.dimensions[axis] = data_shape[i]
+
+            for grid_name, grid in grid_dict.items():
+                var = f.create_variable(
+                    grid_name, common_cfg['axes'], data=grid,
+                    **compress_kwargs
+                )
+                var.attrs[REF_entry] = str(grid_name)
+                if common_cfg is not None:
+                    for key, value in common_cfg.items():
+                        var.attrs[key] = value
+                if custom_cfg is not None:
+                    local_cfg = custom_cfg.get(grid_name)
+                    if local_cfg is not None:
+                        for key, value in local_cfg.items():
+                            var.attrs[f'{grid_name}_{key}'] = value
+    else:
+        raise InnateError(f'To open ".nc" (h5netcdf) files you need to install the h5netcdf package')
+    return
